@@ -37,7 +37,8 @@ private:
     virtual void onMessage(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::Data& data);
     virtual void onClose(cocos2d::network::WebSocket* ws);
     virtual void onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error);
-
+    virtual void TestServerConn();
+    
 public:
     static cocos2d::Scene* createScene();
 

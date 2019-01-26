@@ -50,13 +50,30 @@ bool HelloWorld::init()
         return false;
     }
     
+    TestServerConn();
+    
     
     //eventos socket
-    _webSocket = new WebSocket();
-    _webSocket->init(*this, "ws://localhost:8887");
-    
+    /*_webSocket = new WebSocket();
+    _webSocket->init(*this, "ws://172.18.59.54:3000/v2/ws");
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = [=] (Touch* touch, Event* event) {
+        
+        _webSocket -> send("test server...");
+        return true;
+        
+    };
+    listener->onTouchMoved = [=] (Touch* touch, Event* event){};
+    listener->onTouchEnded = [=] (Touch* touch, Event* event){};
+    _eventDispatcher -> addEventListenerWithSceneGraphPriority(listener,this);*/
 
     return true;
+}
+
+void HelloWorld::TestServerConn(){
+    _webSocket = new WebSocket();
+    _webSocket->init(*this, "ws://172.18.59.54:3000/v2/ws");
+    _webSocket -> send("Connection server...");
 }
 
 
@@ -82,5 +99,5 @@ void HelloWorld::onClose(cocos2d::network::WebSocket* ws){
     CCLOG("On Close");
 }
 void HelloWorld::onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error){
-    CCLOG("On Error");
+    CCLOG("On Error: %d", error);
 }
